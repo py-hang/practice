@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="150" height="150"></canvas>
+</body>
+
+</html>
+<script type="application/javascript">
+    var canvas = document.querySelector("#canvas");
+    if (canvas.getContext) {
+        var ctx = canvas.getContext("2d");
+
+        ctx.fillStyle = "rgb(200,0,0)";
+        ctx.fillRect(10, 10, 55, 50);
+
+        // 绘制一个边框
+        ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+        ctx.strokeRect(30, 30, 55, 50);
+        // 清除绘制区域-------显示空白
+        ctx.clearRect(10, 10, 55, 50);
+
+
+        ctx.fillStyle = "rgb(0,0,0)";
+        ctx.fillRect(60, 60, 50, 50);
+        ctx.clearRect(70, 70, 30, 30);
+        ctx.strokeRect(75, 75, 20, 20);
+    } else {
+        canvas.innerHTML = "暂不支持canvas";
+    }
+</script>

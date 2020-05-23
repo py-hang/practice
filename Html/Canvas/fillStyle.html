@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+
+</html>
+<script>
+    var canvas = document.getElementById("canvas");
+    let ctx = canvas.getContext("2d");
+    // 绘制色板
+    // for (let i = 0; i < 6; i++) {
+    //     for (let j = 0; j < 6; j++) {
+    //         ctx.fillStyle = 'rgb(' +
+    //             Math.floor(255 - 42.5 * i) + ',' + Math.floor(255 - 42.5 * j) + ',0)';
+    //         ctx.fillRect(25 * i, 25 * j, 25, 25);
+    //     }
+    // }
+    // 绘制渐变圆
+    for (let i = 0; i < 6; i++) {
+        for (let j = 0; j < 6; j++) {
+            // 轮廓填充的颜色
+            ctx.strokeStyle = 'rgb(' +
+                Math.floor(255 - 42.5 * i) + ',' + Math.floor(255 - 42.5 * j) + ',0)';
+            ctx.beginPath();
+            ctx.arc(12.5 + 25 * i, 12.5 + 25 * j, 10, 0, Math.PI * 2, true);
+            ctx.stroke();
+        }
+    }
+</script>
