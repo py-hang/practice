@@ -1,0 +1,14 @@
+// 导入less文件时，可以省略.less后缀
+// 导入的位置可以随便放
+@import './mian';
+@import (reference) "bootstrap.less"; 
+
+#wrap:extend(.navbar all){}
+
+// once-------相同名称的文件只会被导入一次
+@import (once) "mian.less";
+@import (once) "main.less"; //这一行被自动忽略
+
+// multiple -------允许导入多个同名文件，对文件的内容进行全部编译
+@import (multiple) "main.less";
+@import (multiple) "main.less";

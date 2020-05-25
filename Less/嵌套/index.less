@@ -1,0 +1,35 @@
+// &指代上一层选择器的名字
+#header{
+    &:after{
+      content:"Less is more!";
+    }
+    .title{
+      font-weight:bold;
+    }
+    &_content{//理解方式：直接把 & 替换成 #header
+      margin:20px;
+    }
+  }
+
+//   媒体查询 ----每一个元素都会编译出@media声明
+#main{
+    @media screen{
+        @media (max-width){
+            width:100px;
+        }
+    }
+    @media tv{
+        width:20000px;
+    }
+}
+
+// 定义私有样式
+#main{
+    // something..
+    &.show{
+      display:block;
+    }
+  }
+  .show{
+    display:none;
+  }

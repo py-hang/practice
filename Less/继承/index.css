@@ -1,0 +1,20 @@
+.animal,
+#main,
+#wrap {
+  color: #ffffff;
+}
+#main,
+#wrap {
+  color: red;
+}
+#main1 {
+  color: #ffffff;
+}
+#main,
+#wrap {
+  width: 200px;
+}
+#main::after,
+#wrap::after {
+  content: "Less is good!";
+}

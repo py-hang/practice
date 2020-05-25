@@ -1,0 +1,81 @@
+// 值变量
+@color: #999;
+@bgColor: skyblue;//不要添加引号
+@width: 50%;
+#wrap {
+  color: @color;
+  background: @bgColor;
+  width: @width;
+}
+
+// 选择器变量
+@mycolor:#wrap;
+@wrap:wrap;
+@{mycolor}{//选择器的变量必须用大括号
+    color:#999;
+    width:50%;
+}
+.@{wrap}{
+    color:#ccc;
+}
+#@{wrap}{
+    color:#666;
+}
+
+// 属性变量
+@border-style:border-style;//属性变量也必须用大括号
+@solid:solid;
+#wrap{
+    @{border-style}:@solid;
+}
+
+// url变量
+@image:"../img";//url变量要使用引号
+body{
+    // 字符串中引入变/量要使用大括号，有点类似字符串模板
+    background: url("@{image}/dog");
+}
+
+// 声明变量
+// 结构: @name: { 属性: 值 ;};
+// 使用：@name();
+@background:{background-color: #ff0000;};
+@Rules:{
+    width: 200px;
+    height: 200px;
+    border: solid 1px red;
+};
+// 有点类似混入，虽然混入我也不太懂
+#con{
+  @background();
+  @Rules();
+}
+
+// 变量运算
+@width:300px;
+@color:#222;
+#wrap{
+  width:@width - 20;
+  height:@width - 20*5;
+  margin:(@width - 20)*5;
+  color:@color*2;
+  background-color:@color + #111;
+}
+
+// 变量作用域 ----就近原则， 哪个离得近就是用哪个
+/* Less */
+@var: @a;
+@a: 100%;
+#wrap {
+  width: @var;
+  @a: 9%; //使用的是下面这个
+}
+
+// 用变量去定义变量
+@fnode:"i am fnode";
+@var:"fnode";
+.clap{
+    content:@@var;
+}
+
+

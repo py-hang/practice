@@ -1,0 +1,135 @@
+// 混入犹如声明的集合
+// 函数在css中是不会编译出来的，类的混入会编译出来
+.card(){ // 等价于 .card()
+    background: #f6f6f6;
+    -webkit-box-shadow: 0 1px 2px rgba(151, 151, 151, .58);
+    box-shadow: 0 1px 2px rgba(151, 151, 151, .58);
+}
+#wrap{
+    // 避免混淆的写法
+  .card();//等价于.card();
+}
+
+// 默认参数方法
+.border(@a:1px,@b:50px,@c:30px,@color:#000){
+    border:solid @a @color;
+    box-shadow:@arguments;
+}
+#main{
+    .border();
+}
+#wrap{
+    .border(0px);
+}
+
+// 方法的匹配模式
+.triangle(top,@width:20px,@color:#000){
+    border-color:transparent  transparent @color transparent ;
+}
+.triangle(right,@width:20px,@color:#000){
+    border-color:transparent @color transparent  transparent ;
+}
+
+.triangle(bottom,@width:20px,@color:#000){
+    border-color:@color transparent  transparent  transparent ;
+}
+.triangle(left,@width:20px,@color:#000){
+    border-color:transparent  transparent  transparent @color;
+}
+// 匹配变量
+.triangle(@_,@width:20px,@color:#000){
+    border-style: solid;
+    border-width: @width;
+}
+#main{
+    .triangle(top,50px, #999)
+}
+
+// 方法的命明空间
+#card(){
+    background-color: #f6f6f6;
+    .d(@w:300px){
+        width:@w;
+        #a(@h:@w){
+            height: @h;
+        }
+    }
+}
+#wrap{
+    #card > .d >#a(100px);//父元素不加括号
+}
+#main{
+    #card .d();//逗号隔开就获取那一层的属性，并不会累加 
+}
+#con{
+    //不得单独使用命名空间的方法
+    //.d() 如果前面没有引入命名空间 #card ，将会报错
+    
+    #card; // 等价于 #card();----只有第一层background-color属性
+    .d(20px); //必须先引入 #card
+}
+
+// 方法的条件筛选
+// less使用when代替if else
+#card{
+    .border(@width,@color,@style) when (@width>100px) and (@color=#999){
+        border:@style @color @width;
+    }
+    .background(@color) when not(@color>=#222){
+        background:@color;
+    }
+    // 进行或运算
+    .font(@size:20px) when(@size>50px),(@size<100px){
+        font-size: @size;
+    }
+}
+// 除去关键字true以外的值都被视为false ----不懂啥意思
+#main{
+    #card>.border(1001px,#999,solid);
+    #card .background(#111);
+    #card > .font(40px);
+}
+
+// 不指定参数数量的方法
+.boxShadow(...){
+    box-shadow: @arguments;
+}
+// 设置变量，好配置其他属性
+.textShadow(@a,...){
+    text-shadow: @arguments;
+}
+
+#main{
+    .boxShadow(1px,4px,30px,red);
+    .textShadow(1px,4px,30px,red);
+}
+
+// 方法使用important！
+.bor(@size){
+    font-size:@size;
+    width:@size;
+}
+// 方法中的属性会继承important
+#main1{
+    .bor(12px) !important
+}
+
+// 循环方法
+.generate-columns(4);
+
+.generate-columns(@n, @i: 1) when (@i =< @n) {
+  .column-@{i} {
+    width: (@i * 100% / @n);
+  }
+  .generate-columns(@n, (@i + 1));
+}
+
+// 属性拼接方法  +号代表‘,’ +_代表空格
+.bor() {
+    border+:1px;
+}
+.main2 {
+    // 凭借的时候要对应符号
+  .bor();
+  border+_:solid #dfdfdf;
+}

@@ -1,0 +1,25 @@
+#header:after {
+  content: "Less is more!";
+}
+#header .title {
+  font-weight: bold;
+}
+#header_content {
+  margin: 20px;
+}
+@media screen and (max-width) {
+  #main {
+    width: 100px;
+  }
+}
+@media tv {
+  #main {
+    width: 20000px;
+  }
+}
+#main.show {
+  display: block;
+}
+.show {
+  display: none;
+}

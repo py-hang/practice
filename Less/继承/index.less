@@ -1,0 +1,23 @@
+// extendd关键字的使用 ---- 目前看是把其他类的属性扩充到自己身上(继承)
+.animal{
+    color:#ffffff;
+}
+#main{
+    &:extend(.animal);
+    color:red;
+}
+#main1{
+    // 这样也可以扩充 --- 体现不出继承吧(编译生成过多的代码量)
+    .animal
+}
+
+// all全局搜索替换
+#main{
+    width: 200px;
+  }
+  #main {
+    &::after {
+      content:"Less is good!";
+    }
+  }
+  #wrap:extend(#main all) {}

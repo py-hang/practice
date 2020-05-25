@@ -1,0 +1,41 @@
+#wrap {
+  color: #222;
+  background: skyblue;
+  width: 300px;
+}
+#wrap {
+  color: #999;
+  width: 50%;
+}
+.wrap {
+  color: #ccc;
+}
+#wrap {
+  color: #666;
+}
+#wrap {
+  border-style: solid;
+}
+body {
+  background: url("../img/dog");
+}
+#con {
+  background-color: #ff0000;
+  width: 200px;
+  height: 200px;
+  border: solid 1px red;
+}
+#wrap {
+  width: 280px;
+  height: 200px;
+  margin: 1400px;
+  color: #444444;
+  background-color: #333333;
+}
+/* Less */
+#wrap {
+  width: "fnode";
+}
+.clap {
+  content: "i am fnode";
+}
