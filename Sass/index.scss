@@ -1,0 +1,13 @@
+@mixin round {
+    border-radius: 5px;
+}
+
+.notice {
+    border: 1px solid #ff0000;
+    @include round;
+}
+
+.not {
+    @extend .notice;
+    color: #ff0000;
+}
