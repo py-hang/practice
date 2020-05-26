@@ -1,0 +1,1 @@
+"use strict";var func=function(){var c;(c=console).log.apply(c,[1,2,3,4])};
