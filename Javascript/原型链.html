@@ -5,20 +5,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="匿名函数.js">
+    <link rel="stylesheet" href="window对象.js">
 </head>
 
 <body>
-    <script>
-        function Fn() {
-            console.log(123);
-        }
-        var person = new Fn();
-        console.log(Fn.prototype);
-        console.log(Fn.__proto__);
-        console.log(person.__proto__);
-    </script>
+    <a href="javascript:;" onclick="handle()">1231</a>
+    <!-- 重载页面 -->
+    <button onclick="location.reload()">重载</button>
+    <button onclick="location = '#top'">跳转片段标识符</button>
+    <!-- 如果页面中有id为top的元素，则会跳转到那个元素去，如果没有则默认调到页面顶部 -->
+    <div id="top" style="position: absolute; top:100%">123</div>
+    <!-- history后退 与history.back()一样-->
+    <button onclick="history.go(-1)">后退</button>
+    <!-- history前进 与history.forward()一样-->
+    <button onclick="history.go(1)">前进</button>
 </body>
 
 </html>
 
 </html>
+<!-- 原型链 -->
+<script>
+    function Fn() {
+        console.log(123);
+    }
+    var person = new Fn();
+    console.log(Fn.prototype);
+    console.log(Fn.__proto__);
+    console.log(person.__proto__);
+</script>
+
+<script>
+    function handle() {
+        if (XMLHttpRequest) {
+            // 都是跳转页面，但是assign可以再回退到原来的页面，replace不能再回退到原来的页面，会清除本地的浏览历史
+            location.assign("other.html");
+        } else {
+            location.replace("other.html");
+        }
+    }
+    console.log(document.localtion);
+    // 查看浏览器版本信息等相关内容
+    console.log(window.navigator);
+    // 显示浏览器窗口信息----width表示指定窗口大小，avaliWidth表示实际可用的窗口大小（像素为单位）
+    console.log(window.screen);
+</script>
